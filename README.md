@@ -4,7 +4,7 @@ A React Native Expo app with Firebase authentication, Firestore database, and Fi
 
 ## Features
 
-- ✅ User authentication (Email/Password + Google Sign-In)
+- ✅ User authentication (Login/Signup)
 - ✅ Profile management
 - ✅ Dashboard with sidebar navigation
 - ✅ Firestore database integration
@@ -23,14 +23,10 @@ npm install
 
 1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
 2. Enable Authentication with Email/Password provider
-3. **Enable Google Sign-In provider** in Authentication > Sign-in method
-4. Create a Firestore database in test mode
-5. Enable Firebase Storage
-6. Get your Firebase configuration from Project Settings > General > Your apps
-7. **Download Google Services files**:
-   - For Android: Download `google-services.json` and place in project root
-   - For iOS: Download `GoogleService-Info.plist` and place in project root
-8. Update the `.env` file with your Firebase credentials:
+3. Create a Firestore database in test mode
+4. Enable Firebase Storage
+5. Get your Firebase configuration from Project Settings > General > Your apps
+6. Update the `.env` file with your Firebase credentials:
 
 ```bash
 EXPO_PUBLIC_FIREBASE_API_KEY=your-api-key
@@ -40,11 +36,6 @@ EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
 EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
 EXPO_PUBLIC_FIREBASE_APP_ID=your-app-id
 EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
-
-# Google Sign-In configuration (get from Firebase Console > Authentication > Google provider)
-EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=your-web-client-id.apps.googleusercontent.com
-EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=your-ios-client-id.apps.googleusercontent.com
-EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID=your-android-client-id.apps.googleusercontent.com
 ```
 
 The `firebaseConfig.js` file automatically reads from these environment variables.
@@ -110,8 +101,7 @@ npm run ios
 ## Firebase Services Configuration
 
 ### Authentication
-- **Email/Password authentication** enabled
-- **Google Sign-In integration** with Firebase Auth
+- Email/Password authentication enabled
 - Persistent authentication state with AsyncStorage
 - Automatic user state management and profile synchronization
 
@@ -143,10 +133,7 @@ npm run ios
 
 ## Important Setup Steps
 
-1. **Enable Authentication**: 
-   - Email/Password: Firebase Console > Authentication > Sign-in method > Email/Password → Enable
-   - Google Sign-In: Firebase Console > Authentication > Sign-in method > Google → Enable
+1. **Enable Authentication**: Go to Firebase Console > Authentication > Sign-in method > Email/Password → Enable
 2. **Create Firestore Database**: Go to Firestore Database > Create database > Start in test mode
 3. **Configure Security Rules**: Update Firestore rules to secure your data
 4. **Enable Storage**: Go to Storage > Get started
-5. **Download Google Services Files**: Place `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) in project root

@@ -11,7 +11,6 @@ import {
   Platform,
 } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
-import GoogleSignInButton from '../components/GoogleSignInButton';
 
 interface LoginScreenProps {
   navigation: any;
@@ -79,17 +78,6 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             <Text style={styles.buttonText}>Sign In</Text>
           )}
         </TouchableOpacity>
-
-        <View style={styles.divider}>
-          <View style={styles.dividerLine} />
-          <Text style={styles.dividerText}>or</Text>
-          <View style={styles.dividerLine} />
-        </View>
-
-        <GoogleSignInButton
-          title="Sign in with Google"
-          disabled={loading}
-        />
 
         <TouchableOpacity
           style={styles.linkButton}
@@ -161,20 +149,5 @@ const styles = StyleSheet.create({
   linkTextBold: {
     color: '#007AFF',
     fontWeight: '600',
-  },
-  divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#ddd',
-  },
-  dividerText: {
-    marginHorizontal: 16,
-    color: '#666',
-    fontSize: 14,
   },
 });
