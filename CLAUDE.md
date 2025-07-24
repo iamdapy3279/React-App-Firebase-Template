@@ -13,7 +13,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Firebase Setup Requirements
 - Copy `.env.example` to `.env` and configure with Firebase project credentials
-- Enable Authentication (Email/Password) in Firebase Console
+- Enable Authentication (Email/Password + Google Sign-In) in Firebase Console
+- Download and place Google Services files (`google-services.json`, `GoogleService-Info.plist`)
 - Create Firestore database in test mode
 - Configure Firestore security rules (see README.md)
 
@@ -26,6 +27,7 @@ The app uses a conditional navigation pattern based on authentication state:
 
 Authentication state is managed globally via `contexts/AuthContext.tsx` with:
 - Firebase Auth integration with AsyncStorage persistence
+- **Email/Password and Google Sign-In** authentication methods
 - Automatic user profile creation/sync in Firestore `users` collection
 - User state available throughout app via `useAuth()` hook
 
@@ -52,6 +54,7 @@ All database operations use user-scoped queries for security. User profiles are 
 ### Service Layer
 - `services/firestore.ts` - CRUD operations for sampleData collection
 - `services/userProfile.ts` - User profile management in Firestore
+- `services/googleSignIn.ts` - Google Sign-In configuration and operations
 - All services include proper error handling and TypeScript types
 
 ## Key Development Patterns
@@ -63,6 +66,13 @@ When modifying auth functionality, remember to update both Firebase Auth and Fir
 await firebaseUpdateProfile(auth.currentUser, { displayName });
 await userProfileService.updateUserProfile(userId, { displayName });
 ```
+
+### Google Sign-In Integration
+The app supports both email/password and Google authentication:
+- Google Sign-In is configured in `services/googleSignIn.ts`
+- Auth context handles both authentication methods uniformly
+- User profiles are automatically created for Google sign-in users
+- Sign-out process handles both Firebase and Google sign-out
 
 ### Database Queries
 All Firestore queries must be user-scoped:
